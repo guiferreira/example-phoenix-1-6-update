@@ -2,8 +2,9 @@
 
 To start your Phoenix server:
 
-  * Setup the project with `mix setup`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Setup the project with `docker-compose run --rm web mix setup`
+  * Start Phoenix endpoint with `docker-compose up -d web`
+  * Start tests with `docker-compose run --rm tests mix test`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
