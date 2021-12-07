@@ -1,0 +1,41 @@
+app:
+  build: .
+  tty: true
+  stdin_open: true
+  volumes:
+    - .:/blog
+  ports:
+    - 4000:4000
+
+web:
+  extends: app
+  environment:
+    - USER
+    - USERNAME
+    - MIX_ENV=dev
+    - PG_HOST=db
+    - PG_USERNAME=postgres
+    - PG_PASSWORD=postgres
+    - METABASE_URL=qwuyiqwtqyu7812617826sajsjhasbaj
+    - METABASE_SECRET_KEY=jhadsdiasgdisagig2176217268188sabjsajshaj
+  links:
+    - db
+
+tests:
+  extends: app
+  environment:
+    - USER
+    - USERNAME
+    - MIX_ENV=test
+    - PG_HOST=db
+    - PG_USERNAME=postgres
+    - PG_PASSWORD=postgres
+  links:
+    - db
+
+db:
+  image: postgres:9.5
+  environment:
+    - POSTGRES_PASSWORD=postgres
+  ports:
+    - 5432:5432
